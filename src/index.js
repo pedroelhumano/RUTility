@@ -85,30 +85,40 @@ const format = {
         }
         
         return rut.replace(/^(\d{1,2})(\d{3})(\d{3})$/, '$1.$2.$3');
-    },    
-    dash: (rut) => {
-        if (typeof rut !== 'string') {
-            throw new Error("Invalid RUT format. RUT must be a string.");
-        }
-        return rut.replace(/-/g, '');
     },
-    dotDash: (rut) => {
-        if (typeof rut !== 'string') {
-            throw new Error("Invalid RUT format. RUT must be a string.");
+    dash: (rut) => {
+        formatValidations(rut);
+        if (!rut.includes('-')) {
+            return rut.slice(0, -1) + '-' + rut.slice(-1);
         }
-        return rut.replace(/\./g, '').replace(/-/g, '');
+        return rut;
+    },    
+    dotDash: (rut) => {
+        formatValidations(rut);
+        const formattedRut = rut.replace(/\./g, '').replace(/-/g, '');
+    
+        return formattedRut.slice(0, 2),'.',
+                formattedRut.slice(2, 5),'.',
+                formattedRut.slice(5, 8),'-',
+                formattedRut.slice(-1);
+    },
+    notDot: (rut) => {
+        formatValidations(rut);
+        return rut.replace(/\./g, '');
     },
     notDash: (rut) => {
-        if (typeof rut !== 'string') {
-            throw new Error("Invalid RUT format. RUT must be a string.");
-        }
-        return rut.replace(/-0/g, '');
+        formatValidations(rut);
+        return rut.slice(0, -2);
+    },
+    notDotDash: (rut) => {
+        formatValidations(rut);
+        return rut.replace(/\.-[0-9kK]?$/, '').replace(/\./g, '');
     }
 };
 
 //Validaciones correctas
-// console.log(format.dot("12.123.123-0"));
-// console.log(format.dot("12123123-0"));
-// console.log(format.dot("12123123"));
+console.log(format.dash("12.123.123-0"));
+console.log(format.dash("12123123-0"));
+console.log(format.dash("12123123"));
 //error cases
-console.log(format.dot("asdasdas-k"))
+// console.log(format.dash("asdasdas-k"))
