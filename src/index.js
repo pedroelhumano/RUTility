@@ -51,22 +51,58 @@ const isValidRut = (rut) => {
     return verificationDigit === calculatedVerificationDigit;
 };
 
+const formatValidations = (rut) => {
+    if (typeof rut !== 'string') {
+        throw new Error("Invalid RUT format. RUT must be a string.");
+    }
 
+    if (rutDigits.startsWith('0')) {
+        throw new Error("Invalid RUT format. RUT cannot start with zero.");
+    }
 
+    // TODO: Aqui hay  un error, que pasa si el rut viene con menos de 8 caractares en la base pero 
+    // TOOD: con digito verificador? ejemplo 1234567-1, esto deberia dar error pero por este test pasa
+    const rutDigits = rut.replace(/\./g, '').replace(/-/g, '');
+
+    if (rutDigits.length < 8) {
+        throw new Error("Invalid RUT format. RUT must have at least 8 characters");
+    }
+}
 
 // TODO: WIP
 const format = {
     dot: (rut) => {
-        return rut.replace(/^(\d{2})(\d{3})(\d{3})-?(\d{1})$/, '$1.$2.$3-$4');
-    },
+        formatValidations(rut);
+
+        if (rut.includes('-')) {
+            return rut.replace(/^(\d{1,2})(\d{3})(\d{3})-(\d|k)$/, '$1.$2.$3-$4');
+        } else {
+            return rut.replace(/^(\d{1,2})(\d{3})(\d{3})$/, '$1.$2.$3');
+        }
+    },    
     dash: (rut) => {
+        if (typeof rut !== 'string') {
+            throw new Error("Invalid RUT format. RUT must be a string.");
+        }
         return rut.replace(/-/g, '');
     },
     dotDash: (rut) => {
+        if (typeof rut !== 'string') {
+            throw new Error("Invalid RUT format. RUT must be a string.");
+        }
         return rut.replace(/\./g, '').replace(/-/g, '');
     },
     notDash: (rut) => {
+        if (typeof rut !== 'string') {
+            throw new Error("Invalid RUT format. RUT must be a string.");
+        }
         return rut.replace(/-0/g, '');
     }
 };
 
+//Validaciones correctas
+console.log(format.dot("12.123.123-0"));
+console.log(format.dot("12123123-0"));
+console.log(format.dot("12123123"));
+//error cases
+// console.log(format.dot("1212312")) debe dar error
