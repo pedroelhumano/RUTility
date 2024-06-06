@@ -56,29 +56,35 @@ const formatValidations = (rut) => {
         throw new Error("Invalid RUT format. RUT must be a string.");
     }
 
-    if (rutDigits.startsWith('0')) {
+    if (rut.startsWith('0')) {
         throw new Error("Invalid RUT format. RUT cannot start with zero.");
     }
 
-    // TODO: Aqui hay  un error, que pasa si el rut viene con menos de 8 caractares en la base pero 
-    // TOOD: con digito verificador? ejemplo 1234567-1, esto deberia dar error pero por este test pasa
-    const rutDigits = rut.replace(/\./g, '').replace(/-/g, '');
+    let rutDigits = rut.replace(/\./g, '');
+    
+    if (rut.includes('-')) {
+        rutDigits = rutDigits.replace(/-/g, '');
+        if (rutDigits.length !== 9) {
+            throw new Error("Invalid RUT format. RUT must have at least 9 characters if the RUT contains the '-' character.");
+        }
+    }   else if (rutDigits.length !== 8) {
+            throw new Error("Invalid RUT format. RUT must have at least 8 characters.");
+    }
 
-    if (rutDigits.length < 8) {
-        throw new Error("Invalid RUT format. RUT must have at least 8 characters");
+    const numericRegexRut = /^\d{8}[\dkK]?$/;
+    if (!numericRegexRut.test(rutDigits)) {
+        throw new Error('Invalid RUT format. RUT must have at least 8 numeric characters or 9 if it contains a "-" character.');
     }
 }
 
-// TODO: WIP
 const format = {
     dot: (rut) => {
         formatValidations(rut);
-
         if (rut.includes('-')) {
             return rut.replace(/^(\d{1,2})(\d{3})(\d{3})-(\d|k)$/, '$1.$2.$3-$4');
-        } else {
-            return rut.replace(/^(\d{1,2})(\d{3})(\d{3})$/, '$1.$2.$3');
         }
+        
+        return rut.replace(/^(\d{1,2})(\d{3})(\d{3})$/, '$1.$2.$3');
     },    
     dash: (rut) => {
         if (typeof rut !== 'string') {
@@ -101,8 +107,8 @@ const format = {
 };
 
 //Validaciones correctas
-console.log(format.dot("12.123.123-0"));
-console.log(format.dot("12123123-0"));
-console.log(format.dot("12123123"));
+// console.log(format.dot("12.123.123-0"));
+// console.log(format.dot("12123123-0"));
+// console.log(format.dot("12123123"));
 //error cases
-// console.log(format.dot("1212312")) debe dar error
+console.log(format.dot("asdasdas-k"))
