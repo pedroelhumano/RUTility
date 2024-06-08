@@ -4,8 +4,8 @@
   "main": "dist-node/index.js",
   "brower": "dist-browser/index.js",
   "scripts": {
+    "test:unit": "jest",
     "test:coverage": "npx jest --coverage --collectCoverageFrom='src/**/*.ts'",
-    "test": "jest",
     "build-browser": "tsc src/index.ts --outDir dist-browser --module ES6 --lib es2015,dom",
     "build-node": "tsc src/index.ts --outDir dist-node --lib es2015",
     "build": "npm run build-browser & npm run build-node"
