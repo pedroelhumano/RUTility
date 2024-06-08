@@ -78,6 +78,16 @@ const formatValidations = (rut) => {
 }
 
 const format = {
+    /**
+     * Formats a RUT by adding dots and dash if necessary.
+     * @param {string} rut - The RUT to format.
+     * @returns {string} The formatted RUT.
+     * @example
+     * format.dot("12345678-0")
+     * // Returns "12.345.678-0"
+     * format.dot("12345678")
+     * // Returns "12.345.678"
+     */
     dot: (rut) => {
         formatValidations(rut);
         if (rut.includes('-')) {
@@ -86,6 +96,18 @@ const format = {
         
         return rut.replace(/^(\d{1,2})(\d{3})(\d{3})$/, '$1.$2.$3');
     },
+
+    /**
+     * Formats a RUT by adding a dash at the end if it's missing.
+     * @param {string} rut - The RUT to format.
+     * @returns {string} The formatted RUT.
+     * @example
+     * format.dash("123456780")
+     * // Returns "12345678-0"
+     * format.dash("12.345.6780")
+     * // Returns "12345678-0"
+     */
+    // TODO!: Validar esto, creo que hay un error para el caso 12.345.6780
     dash: (rut) => {
         formatValidations(rut);
         if (!rut.includes('-')) {
@@ -93,32 +115,119 @@ const format = {
         }
         return rut;
     },    
+
+    /**
+     * Formats a RUT by removing dots and dashes and adding dots and dash in the proper position.
+     * @param {string} rut - The RUT to format.
+     * @returns {string} The formatted RUT.
+     * @example
+     * format.dotDash("123456780")
+     * // Returns "12.345.678-0"
+     */
     dotDash: (rut) => {
         formatValidations(rut);
         const formattedRut = rut.replace(/\./g, '').replace(/-/g, '');
     
-        return formattedRut.slice(0, 2),'.',
-                formattedRut.slice(2, 5),'.',
-                formattedRut.slice(5, 8),'-',
-                formattedRut.slice(-1);
+        return formattedRut.slice(0, 2) + '.' + formattedRut.slice(2, 5) + '.' + formattedRut.slice(5, 8) + '-' + formattedRut.slice(-1);
     },
+
+    /**
+     * Removes dots from a RUT.
+     * @param {string} rut - The RUT from which to remove the dots.
+     * @returns {string} The RUT without dots.
+     * @example
+     * format.notDot("12.345.678-0")
+     * // Returns "12345678-0"
+     */
     notDot: (rut) => {
         formatValidations(rut);
         return rut.replace(/\./g, '');
     },
+
+    /**
+     * Removes the dash and the final digit (or "k") from a RUT.
+     * @param {string} rut - The RUT from which to remove the dash and the final digit.
+     * @returns {string} The RUT without the dash and the final digit.
+     * @example
+     * format.notDash("12.345.678-0")
+     * // Returns "12.345.678"
+     * format.notDash("12345678-0")
+     * // Returns "12345678"
+     */
     notDash: (rut) => {
         formatValidations(rut);
-        return rut.slice(0, -2);
+        if (rut.includes('-')) {
+            return rut.slice(0, -2);
+        }
+        return rut
     },
+
+    /**
+     * Removes dots and the dash followed by the final digit (or "k") from a RUT.
+     * @param {string} rut - The RUT from which to remove dots and the dash followed by the final digit.
+     * @returns {string} The RUT without dots and without the dash followed by the final digit.
+     * @example
+     * format.notDotDash("12.345.678-9")
+     * // Returns "12345678"
+     */
     notDotDash: (rut) => {
         formatValidations(rut);
-        return rut.replace(/\.-[0-9kK]?$/, '').replace(/\./g, '');
+        return rut.replace(/\./g, '').replace(/-(\d|k|K)$/, '');
     }
 };
 
-//Validaciones correctas
-console.log(format.dash("12.123.123-0"));
-console.log(format.dash("12123123-0"));
-console.log(format.dash("12123123"));
-//error cases
-// console.log(format.dash("asdasdas-k"))
+const isFormatLike = {
+    /**
+     * Checks if a Chilean RUT has the correct format with dots and optional dash.
+     * @param {string} rut - The RUT to be checked. Example: "12.345.678-9".
+     * @returns {boolean} true if the RUT has the correct format, false otherwise. Example: true.
+     */
+    dot: (rut) => {
+        return /^(?!0)(\d{2}\.\d{3}\.\d{3}-?\d)$/.test(rut);
+    },
+
+    /**
+     * Checks if a Chilean RUT has the correct format with dash at the end.
+     * @param {string} rut - The RUT to be checked. Example: "12.345.678-9".
+     * @returns {boolean} true if the RUT has the correct format, false otherwise. Example: true.
+     */
+    dash: (rut) => {
+        // formatValidations(rut);
+        return /^(?!0)\d{2}\.\d{3}\.\d{3}-\d$/.test(rut);
+    },
+
+    /**
+     * Checks if a Chilean RUT has the correct format with dots and dash, regardless of their order.
+     * @param {string} rut - The RUT to be checked. Example: "12.345.678-9".
+     * @returns {boolean} true if the RUT has the correct format, false otherwise. Example: true.
+     */
+    dotDash: (rut) => {
+        // formatValidations(rut);
+        return /^(?!0)(\d{2}\.\d{3}\.\d{3}-\d|\d{8}-\d)$/.test(rut) || /^(?!0)(\d{1,2})(\.\d{3}){2}-\d$/.test(rut);
+    }
+};
+
+
+
+console.log("Ejemplo para isFormatLike.dot")
+console.log(isFormatLike.dot("12.345.678-9")); // true
+console.log(isFormatLike.dot("12345678-9"));   // true
+console.log(isFormatLike.dot("123456789"));    // false
+console.log(isFormatLike.dot("12.345.6789"));  // false
+console.log(isFormatLike.dot("0"));            // false
+
+console.log("Ejemplo para isFormatLike.dash");
+console.log(isFormatLike.dash("12.345.678-9")); // true
+console.log(isFormatLike.dash("12345678-9"));   // false
+console.log(isFormatLike.dash("123456789"));    // false
+console.log(isFormatLike.dash("12.345.6789"));  // false
+console.log(isFormatLike.dash("0"));            // false
+
+console.log("Ejemplo para isFormatLike.dotDash");
+console.log(isFormatLike.dotDash("12.345.678-9"));  // true
+console.log(isFormatLike.dotDash("12345678-9"));    // true
+console.log(isFormatLike.dotDash("123456789"));     // false
+console.log(isFormatLike.dotDash("12.345.6789"));   // false
+console.log(isFormatLike.dotDash("0"));             // false
+console.log(isFormatLike.dotDash("12.345-678.9"));  // true
+console.log(isFormatLike.dotDash("12.345.67-89"));  // true
