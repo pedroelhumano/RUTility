@@ -1,11 +1,22 @@
 {
   "name": "rutility",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "dist-node/index.js",
+  "brower": "dist-browser/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:coverage": "npx jest --coverage --collectCoverageFrom='src/**/*.ts'",
+    "test": "jest",
+    "build-browser": "tsc src/index.ts --outDir dist-browser --module ES6 --lib es2015,dom",
+    "build-node": "tsc src/index.ts --outDir dist-node --lib es2015",
+    "build": "npm run build-browser & npm run build-node"
   },
   "author": "",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.4",
+    "coverage": "^0.4.1"
+  }
 }
