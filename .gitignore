@@ -1,0 +1,5 @@
+/node_modules
+/dist-browser
+/dist-node
+/coverage
+package-lock.json
