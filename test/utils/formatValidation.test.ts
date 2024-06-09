@@ -21,15 +21,6 @@ describe('formatValidations function', () => {
         }).toThrowError("Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.");
     });
 
-    test('should not throw error for a valid RUT without "-"', () => {
-        expect(() => {
-            formatValidations('12345678');
-        }).not.toThrow();
-        expect(() => {
-            formatValidations('543');
-        }).not.toThrow();
-    });
-
     test('should throw error if the RUT contains non-numeric characters', () => {
         expect(() => {
             formatValidations('12.34a.678');
@@ -41,13 +32,25 @@ describe('formatValidations function', () => {
             formatValidations('12.345.678-9');
         }).not.toThrow();
         expect(() => {
+            formatValidations('12.345.678-K');
+        }).not.toThrow();
+        expect(() => {
             formatValidations('2.345.678-9');
+        }).not.toThrow();
+        expect(() => {
+            formatValidations('2.345.678-k');
         }).not.toThrow();
         expect(() => {
             formatValidations('992.345.678-9');
         }).not.toThrow();
         expect(() => {
-            formatValidations('1-9');
+            formatValidations('992345678-K');
+        }).not.toThrow();
+        expect(() => {
+            formatValidations('999.999.999-k');
+        }).not.toThrow();
+        expect(() => {
+            formatValidations('1-k');
         }).not.toThrow();
     });
 
