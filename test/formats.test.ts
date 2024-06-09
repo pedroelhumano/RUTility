@@ -200,44 +200,33 @@ describe('RUT Formatting Functions', () => {
         });
     });
     
-    // describe('format.notDotDash', () => {
-    //     // RUTs en blanco donde se deben remover los puntos y el guion
-    //     test('should remove dots and dash from RUT', () => {
-    //         expect(format.notDotDash('12.345.678-9')).toBe('123456789');
-    //         expect(format.notDotDash('1.234.567-K')).toBe('1234567K');
-    //         expect(format.notDotDash('123.456.789-0')).toBe('1234567890');
-    //     });
+    describe('format.notDotDash', () => {
+        test('should remove dots and dash from RUT', () => {
+            expect(format.notDotDash('12.345.678-9')).toBe('12345678');
+            expect(format.notDotDash('1.234.567-K')).toBe('1234567');
+            expect(format.notDotDash('123.456.789-0')).toBe('123456789');
+        });
     
-    //     // RUTs con puntos sin guion (debe remover solo los puntos)
-    //     test('should remove dots from RUT without dash', () => {
-    //         expect(format.notDotDash('12.345.678')).toBe('12345678');
-    //         expect(format.notDotDash('1.234.567')).toBe('1234567');
-    //         expect(format.notDotDash('123.456.789')).toBe('123456789');
-    //     });
+        test('should remove dots from RUT without dash', () => {
+            expect(format.notDotDash('12.345.678')).toBe('12345678');
+            expect(format.notDotDash('1.234.567')).toBe('1234567');
+            expect(format.notDotDash('123.456.789')).toBe('123456789');
+        });
     
-    //     // RUTs con guion sin puntos (debe remover solo el guion)
-    //     test('should remove dash from RUT without dots', () => {
-    //         expect(format.notDotDash('12345678-9')).toBe('123456789');
-    //         expect(format.notDotDash('12345678-K')).toBe('12345678K');
-    //     });
-    
-    //     // RUTs que ya vienen sin puntos ni guion (debe retornar lo mismo que entra)
-    //     test('should do nothing if RUT already has no dots or dash', () => {
-    //         expect(format.notDotDash('123456789')).toBe('123456789');
-    //         expect(format.notDotDash('12345678K')).toBe('12345678K');
-    //     });
-    
-    //     // RUTs cortos
-    //     test('should handle short RUTs', () => {
-    //         expect(format.notDotDash('1-2')).toBe('12');
-    //         expect(format.notDotDash('1.2')).toBe('12');
-    //         expect(format.notDotDash('1-K')).toBe('1K');
-    //     });
-    
-    //     // RUTs largos
-    //     test('should handle long RUTs', () => {
-    //         expect(format.notDotDash('123.456.789.012-3')).toBe('1234567890123');
-    //         expect(format.notDotDash('123.456.789.012-K')).toBe('123456789012K');
-    //     });
-    // });    
+        test('should remove dash from RUT without dots', () => {
+            expect(format.notDotDash('12345678-9')).toBe('12345678');
+            expect(format.notDotDash('12345678-K')).toBe('12345678');
+        });
+
+        test('should do nothing if RUT already has no dots or dash', () => {
+            expect(format.notDotDash('123456789')).toBe('123456789');
+            expect(format.notDotDash('12345678K')).toBe('12345678K');
+        });
+
+        test('should handle short RUTs', () => {
+            expect(format.notDotDash('1-2')).toBe('1');
+            expect(format.notDotDash('1.2')).toBe('12');
+            expect(format.notDotDash('1-K')).toBe('1');
+        });
+    });    
 });
