@@ -1,3 +1,5 @@
+import { formatValidations } from "./Utils/formatValidation";
+
 /**
  * Calculates the verification digit of a Chilean RUT (Rol Único Tributario).
  * @param {string | number} rut - The RUT in one of the following formats:
@@ -12,6 +14,8 @@ const calculateDv = (rut: string | number): string => {
     if (typeof rut !== 'string') {
         rut = rut.toString();
     }
+    
+    formatValidations(rut);
 
     const validFormat = /^(?!0)(\d{2}\.\d{3}\.\d{3}|\d{8})$/;
     if (!validFormat.test(rut)) {
