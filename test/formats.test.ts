@@ -34,6 +34,24 @@ describe('RUT Formatting Functions', () => {
             expect(format.dash('12')).toBe('1-2');
         });
 
+        test('should add dash if missing and keep dots', () => {
+            expect(format.dash('12.345.6780')).toBe('12.345.678-0');
+            expect(format.dash('1.234.567')).toBe('1.234.56-7');
+            expect(format.dash('123.456.789')).toBe('123.456.78-9');
+        });
+    
+        test('should handle short RUTs', () => {
+            expect(format.dash('1k')).toBe('1-k');
+            expect(format.dash('12-K')).toBe('12-K');
+            expect(format.dash('11')).toBe('1-1');
+            expect(format.dash('3-k')).toBe('3-k');
+        });
+    
+        test('should handle long RUTs', () => {
+            expect(format.dash('123456789K')).toBe('123456789-K');
+            expect(format.dash('123.456.789K')).toBe('123.456.789-K');
+        });
+
         test('should do nothing if RUT already has dash', () => {
             expect(format.dash('12345678-0')).toBe('12345678-0');
             expect(format.dash('12345678-K')).toBe('12345678-K');
@@ -42,12 +60,11 @@ describe('RUT Formatting Functions', () => {
             expect(format.dash('123-4')).toBe('123-4');
             expect(format.dash('1-k')).toBe('1-k');
         });
-
-        test('should handle short RUTs', () => {
-            expect(format.dash('1-k')).toBe('1-k');
-            expect(format.dash('12-K')).toBe('12-K');
-            expect(format.dash('11')).toBe('1-1');
-            expect(format.dash('3-k')).toBe('3-k');
+    
+        test('should do nothing if RUT already has dots and dash', () => {
+            expect(format.dash('12.345.678-0')).toBe('12.345.678-0');
+            expect(format.dash('1.234.567-8')).toBe('1.234.567-8');
+            expect(format.dash('999.999.999-K')).toBe('999.999.999-K');
         });
     });
 
