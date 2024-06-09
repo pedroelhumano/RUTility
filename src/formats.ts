@@ -22,10 +22,6 @@ export const format = {
     dotDash: (rut: string): string => {
         formatValidations(rut);
         const cleanRut = removeDotsAndDashes(rut);
-    
-        if (cleanRut.length === 2) {
-            return `${cleanRut[0]}-${cleanRut[1]}`;
-        }
 
         const dv = cleanRut.slice(-1);
         const rutWithoutDv = cleanRut.slice(0, -1);
