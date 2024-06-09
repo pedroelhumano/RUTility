@@ -4,7 +4,7 @@ import { formatValidations } from '../../src/Utils/formatValidation';
 describe('formatValidations function', () => {
     test('should throw error if the parameter is not a string', () => {
         expect(() => {
-            // @ts-ignore
+            // @ts-expect-error Ignoring type error for testing purposes
             formatValidations(12345678);
         }).toThrowError("Invalid RUT format. RUT must be a string.");
     });

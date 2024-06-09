@@ -7,7 +7,7 @@ export const formatValidations = (rut: string): void => {
         throw new Error("Invalid RUT format. RUT cannot start with zero.");
     }
 
-    const cleanRut = rut.replace(/[\.\-]/g, '');
+    const cleanRut = rut.replace(/[.-]/g, '');
     const rutRegex = /^\d{1,9}[0-9kK]?$/i;
     
     if (!rutRegex.test(cleanRut)) {

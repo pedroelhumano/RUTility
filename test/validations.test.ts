@@ -1,5 +1,5 @@
 import {describe, test, expect} from '@jest/globals';
-import { isValidRut } from '../src/validations';
+// import { isValidRut } from '../src/validations';
 
 describe('isValidRut', () => {
   test('2+2 is:', () => {
