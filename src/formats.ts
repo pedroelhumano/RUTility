@@ -110,8 +110,8 @@ export const format = {
  * // Returns '12345678'
  * format.notDotDash('12.345.678');
  */
-notDotDash: (rut: string): string => {
-    formatValidations(rut);
-    return rut.replace(/\./g, '').replace(/-(\d|k|K)$/i, '');
-}
+    notDotDash: (rut: string): string => {
+        formatValidations(rut);
+        return rut.replace(/\./g, '').replace(/-(\d|k|K)$/i, '');
+    }
 };
