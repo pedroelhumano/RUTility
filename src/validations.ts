@@ -79,28 +79,3 @@ const isFormatLike = {
         return /^(?!0)(\d{2}\.\d{3}\.\d{3}-\d|\d{8}-\d)$/.test(rut) || /^(?!0)(\d{1,2})(\.\d{3}){2}-\d$/.test(rut);
     }
 };
-
-
-
-// console.log("Ejemplo para isFormatLike.dot")
-// console.log(isFormatLike.dot("12.345.678-9")); // true
-// console.log(isFormatLike.dot("12345678-9"));   // true
-// console.log(isFormatLike.dot("123456789"));    // false
-// console.log(isFormatLike.dot("12.345.6789"));  // false
-// console.log(isFormatLike.dot("0"));            // false
-
-// console.log("Ejemplo para isFormatLike.dash");
-// console.log(isFormatLike.dash("12.345.678-9")); // true
-// console.log(isFormatLike.dash("12345678-9"));   // false
-// console.log(isFormatLike.dash("123456789"));    // false
-// console.log(isFormatLike.dash("12.345.6789"));  // false
-// console.log(isFormatLike.dash("0"));            // false
-
-// console.log("Ejemplo para isFormatLike.dotDash");
-// console.log(isFormatLike.dotDash("12.345.678-9"));  // true
-// console.log(isFormatLike.dotDash("12345678-9"));    // true
-// console.log(isFormatLike.dotDash("123456789"));     // false
-// console.log(isFormatLike.dotDash("12.345.6789"));   // false
-// console.log(isFormatLike.dotDash("0"));             // false
-// console.log(isFormatLike.dotDash("12.345-678.9"));  // true
-// console.log(isFormatLike.dotDash("12.345.67-89"));  // true
