@@ -167,11 +167,11 @@ describe('RUT Formatting Functions', () => {
             expect(format.notDot('123.456.789')).toBe('123456789');
         });
 
-        // test('should do nothing if RUT already has no dots', () => {
-        //     expect(format.notDot('12345678-0')).toBe('12345678-0');
-        //     expect(format.notDot('12345678K')).toBe('12345678K');
-        //     expect(format.notDot('123456789')).toBe('123456789');
-        // });
+        test('should do nothing if RUT already has no dots', () => {
+            expect(format.notDot('12345678-0')).toBe('12345678-0');
+            expect(format.notDot('12345678K')).toBe('12345678K');
+            expect(format.notDot('123456789')).toBe('123456789');
+        });
     });
     
     describe('format.notDash', () => {
