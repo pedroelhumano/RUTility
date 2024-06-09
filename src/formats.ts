@@ -1,5 +1,6 @@
 import { formatValidations } from "./Utils/formatValidation";
 
+//TODO: VALIDAR SI SERIA MEJOR AGREGAR ESTO DENTRO DE dotDash
 const removeDotsAndDashes = (rut: string): string => rut.replace(/[.-]/g, '');
 
 export const format = {
