@@ -13,17 +13,51 @@ describe('RUT Formatting Functions', () => {
             expect(format.dot('1-k')).toBe('1-k');
             expect(format.dot('1')).toBe('1');
         });
+    
+        test('should add dots if missing and keep dash', () => {
+            expect(format.dot('12345678-0')).toBe('12.345.678-0');
+            expect(format.dot('5678-0')).toBe('5.678-0');
+            expect(format.dot('678-0')).toBe('678-0');
+            expect(format.dot('1-k')).toBe('1-k');
+        });
+    
+        test('should add dots to unformatted RUT', () => {
+            expect(format.dot('12345678')).toBe('12.345.678');
+            expect(format.dot('123456789')).toBe('123.456.789');
+            expect(format.dot('123456')).toBe('123.456');
+            expect(format.dot('12345')).toBe('12.345');
+            expect(format.dot('1234')).toBe('1.234');
+            expect(format.dot('123')).toBe('123');
+        });
+    
+        test('should handle short RUTs', () => {
+            expect(format.dot('1-k')).toBe('1-k');
+            expect(format.dot('12-K')).toBe('12-K');
+            expect(format.dot('11')).toBe('11');
+            expect(format.dot('3-k')).toBe('3-k');
+        });
 
         test('should do nothing if RUT is already formatted with dots', () => {
             expect(format.dot('123.456.780')).toBe('123.456.780');
             expect(format.dot('12.345.678-0')).toBe('12.345.678-0');
-            expect(format.dot('12345678-K')).toBe('12.345.678-K');
-            expect(format.dot('5678-0')).toBe('5.678-0');
-            expect(format.dot('5678-k')).toBe('5.678-k');
+            expect(format.dot('12.345.678-K')).toBe('12.345.678-K');
+            expect(format.dot('5.678-0')).toBe('5.678-0');
+            expect(format.dot('5.678-k')).toBe('5.678-k');
             expect(format.dot('678-0')).toBe('678-0');
             expect(format.dot('1-k')).toBe('1-k');
         });
+    
+        test('should do nothing if RUT already has dots and dash', () => {
+            expect(format.dot('12.345.678-0')).toBe('12.345.678-0');
+            expect(format.dot('1.234.567-8')).toBe('1.234.567-8');
+            expect(format.dot('999.999.999-K')).toBe('999.999.999-K');
+        });
+        test('should handle RUTs with dots in different positions', () => {
+            expect(format.dot('123.45678')).toBe('12.345.678');
+            expect(format.dot('1.2345678')).toBe('12.345.678');
+        });
     });
+    
 
     describe('format.dash', () => {
         test('should add dash if missing', () => {
