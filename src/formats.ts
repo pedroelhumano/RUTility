@@ -1,8 +1,5 @@
 import { formatValidations } from "./Utils/formatValidation";
 
-//TODO: VALIDAR SI SERIA MEJOR AGREGAR ESTO DENTRO DE dotDash
-const removeDotsAndDashes = (rut: string): string => rut.replace(/[.-]/g, '');
-
 export const format = {
     dot: (rut: string): string => {
         formatValidations(rut);
@@ -22,7 +19,7 @@ export const format = {
 
     dotDash: (rut: string): string => {
         formatValidations(rut);
-        const cleanRut = removeDotsAndDashes(rut);
+        const cleanRut = rut.replace(/[.-]/g, '');
 
         const dv = cleanRut.slice(-1);
         const rutWithoutDv = cleanRut.slice(0, -1);
