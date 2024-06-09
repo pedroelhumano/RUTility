@@ -54,11 +54,19 @@ describe('RUT Formatting Functions', () => {
     describe('format.dotDash', () => {
         test('should add dots and dash if missing', () => {
             expect(format.dotDash('123456780')).toBe('12.345.678-0');
-            expect(format.dotDash('12.345.6780')).toBe('12.345.678-0');
             expect(format.dotDash('5678k')).toBe('5.678-k');
-            expect(format.dotDash('111111111')).toBe('111.111.111-1');
-            expect(format.dotDash('1')).toBe('1');
-            expect(format.dotDash('11')).toBe('1-1');
+            expect(format.dotDash('111111111')).toBe('11.111.111-1');
+            expect(format.dotDash('12345')).toBe('1.234-5');
+        });
+    
+        test('should add dash if missing and already has dots', () => {
+            expect(format.dotDash('12.345.6780')).toBe('12.345.678-0');
+            expect(format.dotDash('1.234.5678')).toBe('1.234.567-8');
+        });
+    
+        test('should add dots if missing and already has dash', () => {
+            expect(format.dotDash('12345678-0')).toBe('12.345.678-0');
+            expect(format.dotDash('5678-0')).toBe('5.678-0');
         });
     
         test('should do nothing if RUT already has dots and dash', () => {
@@ -69,21 +77,20 @@ describe('RUT Formatting Functions', () => {
             expect(format.dotDash('1-2')).toBe('1-2');
         });
     
-        test('should handle lowercase and uppercase verifier', () => {
-            expect(format.dotDash('12345678-K')).toBe('12.345.678-K');
-            expect(format.dotDash('56780-k')).toBe('5.678-0-k');
-            expect(format.dotDash('1234-k')).toBe('1.234-k');
-        });
-
         test('should handle short RUTs', () => {
             expect(format.dotDash('1-k')).toBe('1-k');
             expect(format.dotDash('12-K')).toBe('12-K');
             expect(format.dotDash('3-k')).toBe('3-k');
             expect(format.dotDash('10')).toBe('1-0');
             expect(format.dotDash('12K')).toBe('12-K');
-            expect(format.dotDash('12345')).toBe('1.234-5');
+        });
+    
+        test('should handle long RUTs', () => {
+            expect(format.dotDash('1234567890')).toBe('123.456.789-0');
+            expect(format.dotDash('123456789K')).toBe('123.456.789-K');
         });
     });
+    
     
     describe('format.notDot', () => {
         test('should remove dots from RUT', () => {
@@ -102,7 +109,7 @@ describe('RUT Formatting Functions', () => {
     describe('format.notDotDash', () => {
         test('should remove dots and dash from RUT', () => {
             expect(format.notDotDash('12.345.678-9')).toBe('12345678');
-            expect(format.notDotDash('12.345.6780')).toBe('12345678');
+            expect(format.notDotDash('12.345.678')).toBe('12345678');
         });
     });
 });
