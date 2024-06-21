@@ -1,4 +1,4 @@
-import { formatValidations } from "./Utils/formatValidation";
+import { formatValidations, isValidFormatWithOutDash } from "./Utils/utils";
 
 /**
  * Calculates the verification digit of a Chilean RUT (Rol Único Tributario).
@@ -18,13 +18,7 @@ export const calculateDv = (rut: string | number): string => {
         rut = rut.toString();
     }
 
-    formatValidations(rut);
-
-    const isValidFormat = (rut: string) => {
-        return /^\d{1,9}$/.test(rut) || /^\d{1,3}(\.\d{3}){0,2}$/.test(rut);
-    };
-
-    if (!isValidFormat(rut)) {
+    if (!isValidFormatWithOutDash(rut)) {
         throw new Error("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
     }
 
