@@ -1,5 +1,5 @@
 import { describe, test, expect } from '@jest/globals';
-import { calculateDv } from '../src/validations';
+import { calculateDv, isValidRut } from '../src/validations';
 
 describe('calculateDv', () => {
   test('should calculate DV correctly for valid clean RUTs', () => {
@@ -53,5 +53,58 @@ describe('calculateDv', () => {
     expect(() => calculateDv('9999999999')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
     expect(() => calculateDv(9999999999)).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
     expect(() => calculateDv('9.999.999.999')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
+  });
+});
+
+describe('isValidRut function', () => {
+  test('should return true for valid RUTs with dash and dots', () => {
+    expect(isValidRut('12.345.678-5')).toBe(true);
+    expect(isValidRut('87.654.321-4')).toBe(true);
+    expect(isValidRut('11.111.111-1')).toBe(true);
+    expect(isValidRut('99.999.999-9')).toBe(true);
+  });
+
+  test('should return true for valid RUTs without dots', () => {
+    expect(isValidRut('12345678-5')).toBe(true);
+    expect(isValidRut('87654321-4')).toBe(true);
+    expect(isValidRut('11111111-1')).toBe(true);
+    expect(isValidRut('99999999-9')).toBe(true);
+    expect(isValidRut('123456789-2')).toBe(true);
+  });
+
+  test('should throw error for invalid RUT formats', () => {
+    expect(() => isValidRut('1234a678-5')).toThrow("Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.");
+    expect(() => isValidRut('12.34a.678-5')).toThrow("Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.");
+  });
+
+  test('should return false for RUTs with incorrect verification digits', () => {
+    expect(isValidRut('12.345.678-4')).toBe(false);
+    expect(isValidRut('87.654.321-3')).toBe(false);
+    expect(isValidRut('11.111.111-2')).toBe(false);
+    expect(isValidRut('99.999.999-1')).toBe(false);
+  });
+
+  test('should return true for valid RUTs with uppercase K', () => {
+    expect(isValidRut('20.347.878-K')).toBe(true);
+    expect(isValidRut('20347878-K')).toBe(true);
+  });
+
+  test('should return false for valid RUTs with lowercase k', () => {
+    expect(isValidRut('20.347.878-k')).toBe(true);
+    expect(isValidRut('20347878-k')).toBe(true);
+  });
+
+  test('should throw error for RUTs with more than 10 digits', () => {
+    expect(() => isValidRut('12345678901-5')).toThrow("Invalid RUT format");
+    expect(() => isValidRut('1.234.567.890-5')).toThrow("Invalid RUT format");
+  });
+
+  test('should throw error for RUTs starting with zero', () => {
+    expect(() => isValidRut('012345678-5')).toThrow("Invalid RUT format");
+    expect(() => isValidRut('0.123.456.789-5')).toThrow("Invalid RUT format");
+  });
+
+  test('should throw error for empty string', () => {
+    expect(() => isValidRut('')).toThrow("Invalid RUT format");
   });
 });
