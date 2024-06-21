@@ -1,4 +1,4 @@
-import { formatValidations } from "./Utils/formatValidation";
+import { formatValidations } from "./Utils/utils";
 
 export const format = {
     /**

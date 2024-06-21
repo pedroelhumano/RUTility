@@ -14,3 +14,12 @@ export const formatValidations = (rut: string): void => {
         throw new Error('Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.');
     }
 };
+
+/**
+ * Validates the format of a Chilean RUT (Rol Único Tributario).
+ * @param {string} rut - The RUT to validate.
+ * @returns {boolean} True if the format is valid, false otherwise.
+ */
+export const isValidFormatWithOutDash = (rut: string): boolean => {
+    return /^\d{1,9}$/.test(rut) || /^\d{1,3}(\.\d{3}){0,2}$/.test(rut);
+};
