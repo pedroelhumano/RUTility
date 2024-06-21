@@ -48,8 +48,8 @@ describe('calculateDv', () => {
   });
 
   test('should throw error for invalid RUT formats', () => {
-    expect(() => calculateDv('')).toThrow("Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.");
-    expect(() => calculateDv('1234a678')).toThrow("Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.");
+    expect(() => calculateDv('')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
+    expect(() => calculateDv('1234a678')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
     expect(() => calculateDv('9999999999')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
     expect(() => calculateDv(9999999999)).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
     expect(() => calculateDv('9.999.999.999')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
