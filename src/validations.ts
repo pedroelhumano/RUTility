@@ -3,34 +3,32 @@ import { formatValidations } from "./Utils/formatValidation";
 /**
  * Calculates the verification digit of a Chilean RUT (Rol Único Tributario).
  * @param {string | number} rut - The RUT in one of the following formats:
- *   - '12.345.678-9'
+ *   - '12.345.678'
  *   - '12345678'
  *   - 12345678 (as a number)
- *   - '1'
- *   - '1-k'
  * @returns {string} The calculated verification digit or '0' if it's 11, 'K' if it's 10.
- * @throws {Error} If the RUT format is invalid.
- * @throws {Error} If the length of the RUT is incorrect.
+ * @throws {Error} If the RUT format is invalid. Acceptable formats are '26270086' or '26.270.086'.
  * @example
- * calculateDv('12.345.678-5'); // returns '5'
+ * calculateDv('12.345.678'); // returns '5'
  * calculateDv('12345678'); // returns '5'
- * calculateDv('1'); // returns '9'
- * calculateDv('1-k'); // returns '9'
  * calculateDv(12345678); // returns '5'
  */
 export const calculateDv = (rut: string | number): string => {
-    if (typeof rut !== 'string') {
+    if (typeof rut === 'number') {
         rut = rut.toString();
     }
 
     formatValidations(rut);
 
-    // Remove dots and split into the base RUT and the verifier digit (if any)
-    const [rutBase, dv] = rut.replace(/\./g, '').split('-');
+    const isValidFormat = (rut: string) => {
+        return /^\d{1,9}$/.test(rut) || /^\d{1,3}(\.\d{3}){0,2}$/.test(rut);
+    };
 
-    if (rutBase.length === 0 || isNaN(Number(rutBase))) {
-        throw new Error("Invalid RUT format");
+    if (!isValidFormat(rut)) {
+        throw new Error("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
     }
+
+    const rutBase = rut.replace(/\./g, '');
 
     const series = [2, 3, 4, 5, 6, 7];
     const sum = rutBase
@@ -43,11 +41,6 @@ export const calculateDv = (rut: string | number): string => {
 
     return finalDv[dvCalc] ?? dvCalc.toString();
 };
-
-export default calculateDv;
-
-
-
 
 /**
  * Validates if a Chilean RUT (Rol Único Tributario) is valid.
