@@ -45,16 +45,14 @@ export const calculateDv = (rut: string | number): string => {
  * @throws {Error} If the RUT format is invalid.
  */
 export const isValidRut = (rut: string): boolean => {
-    const validFormat = /^(?!0)(\d{2}\.\d{3}\.\d{3}-\d|\d{8}-\d)$/;
-    if (!validFormat.test(rut)) {
-        throw new Error("Invalid RUT format");
-    }
+    formatValidations(rut);
 
-    const digits = rut.replace(/\D/g, '');
-    const verificationDigit = rut.slice(-1);
-    const calculatedVerificationDigit = calculateDv(digits.slice(0, -1));
+    const digitsAndVerification = rut.replace(/[.-]/g, '');
+    const digits = digitsAndVerification.slice(0, -1);
+    const verificationDigit = digitsAndVerification.slice(-1);
+    const calculatedVerificationDigit = calculateDv(digits);
 
-    return verificationDigit === calculatedVerificationDigit;
+    return verificationDigit.toLowerCase() === calculatedVerificationDigit.toLowerCase();
 };
 
 export const isFormatLike = {
