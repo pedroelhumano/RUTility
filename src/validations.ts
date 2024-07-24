@@ -55,6 +55,7 @@ export const isValidRut = (rut: string): boolean => {
     return verificationDigit.toLowerCase() === calculatedVerificationDigit.toLowerCase();
 };
 
+//TODO!: Validate this
 export const isFormatLike = {
     /**
      * Checks if a Chilean RUT has the correct format with dots and optional dash.
