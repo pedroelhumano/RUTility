@@ -18,6 +18,24 @@
 - Add Utils:
     - `formatValidations`: Basic validations of the format of a Chilean RUT (Rol Único Tributario).
     - `isValidFormatWithOutDash`: Validates the format of a Chilean RUT (Rol Único Tributario).
+- Add test:
+    - Validations:
+        - `calculateDv`
+        - `isValidRut`
+        - `isFormat`:
+            - `isFormat.dot`
+            - `isFormat.dash`
+            - `isFormat.dotDash`
+    - `format`:
+        - `format.dot`
+        - `format.dash`
+        - `format.dotDash`
+        - `format.notDot`
+        - `format.notDash`
+        - `format.notDotDash`
+    - `Utils`:
+        - `formatValidations`
+        - `isValidFormatWithOutDash`
 - Add config files and base files:
     - `package.json`
     - `.gitignore`
