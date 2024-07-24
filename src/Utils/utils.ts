@@ -1,3 +1,13 @@
+/**
+ * Basic validations of the format of a Chilean RUT (Rol Único Tributario).
+ * Checks if the RUT is a string, does not start with zero, and follows the correct numeric format.
+ * Throws an error if the RUT is invalid.
+ *
+ * @param {string} rut - The RUT to validate.
+ * @throws {Error} If the RUT is not a string.
+ * @throws {Error} If the RUT starts with zero.
+ * @throws {Error} If the RUT does not match the expected format.
+ */
 export const formatValidations = (rut: string): void => {
     if (typeof rut !== 'string') {
         throw new Error("Invalid RUT format. RUT must be a string.");
