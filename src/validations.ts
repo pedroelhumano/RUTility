@@ -56,7 +56,7 @@ export const isValidRut = (rut: string): boolean => {
 };
 
 //TODO!: Validate this
-export const isFormatLike = {
+export const isFormat = {
     /**
      * Checks if a Chilean RUT has the correct format with dots and optional dash.
      * @param {string} rut - The RUT to be checked. Example: "12.345.678-9".
