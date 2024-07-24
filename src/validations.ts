@@ -55,7 +55,6 @@ export const isValidRut = (rut: string): boolean => {
     return verificationDigit.toLowerCase() === calculatedVerificationDigit.toLowerCase();
 };
 
-//TODO!: Validate this
 export const isFormat = {
     /**
      * Checks if a Chilean RUT has the correct format with dots and optional dash.
@@ -63,7 +62,7 @@ export const isFormat = {
      * @returns {boolean} true if the RUT has the correct format, false otherwise. Example: true.
      */
     dot: (rut: string): boolean => {
-        return /^(?!0)(\d{2}\.\d{3}\.\d{3}-?\d)$/.test(rut);
+        return /^(?!0)(\d{1,3}(?:\.\d{3})*)$/.test(rut);
     },
 
     /**
@@ -72,7 +71,7 @@ export const isFormat = {
      * @returns {boolean} true if the RUT has the correct format, false otherwise. Example: true.
      */
     dash: (rut: string): boolean => {
-        return /^(?!0)\d{2}\.\d{3}\.\d{3}-\d$/.test(rut);
+        return /^(?!0)\d{1,9}-(\d|k|K)$/i.test(rut);
     },
 
     /**
@@ -81,6 +80,6 @@ export const isFormat = {
      * @returns {boolean} true if the RUT has the correct format, false otherwise. Example: true.
      */
     dotDash: (rut: string): boolean => {
-        return /^(?!0)(\d{2}\.\d{3}\.\d{3}-\d|\d{8}-\d)$/.test(rut) || /^(?!0)(\d{1,2})(\.\d{3}){2}-\d$/.test(rut);
+        return /^(?!0)(\d{1,3}(?:\.\d{3})*)-(\d|k|K)$/i.test(rut);
     }
 };
