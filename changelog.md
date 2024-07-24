@@ -1,0 +1,31 @@
+### 1.0.0 Initial release
+
+- Add a new file `validations.ts` to contain functions for validating RUT (Rol Único Tributario):
+    - `calculateDv`: Calculates the verification digit of a Chilean RUT (Rol Único Tributario).
+    - 
+
+- Add `format` object with functions for RUT formatting, located within the `format.ts` file:
+    - `format.dot`: Function to format a RUT by adding dots.
+    - `format.dash`: Function to format a RUT by adding a dash.
+    - `format.dotDash`: Function to format a RUT by adding dots and a dash.
+    - `format.notDot`: Function to remove dots from a RUT.
+    - `format.notDash`: Function to remove the dash from a RUT.
+    - `format.notDotDash`: Function to remove dots and the dash from a RUT.
+- Add Utils:
+    - `formatValidations`: Basic validations of the format of a Chilean RUT (Rol Único Tributario).
+    - `isValidFormatWithOutDash`: Validates the format of a Chilean RUT (Rol Único Tributario).
+- Add config files and base files:
+    - `package.json`
+    - `.gitignore`
+    - `changelog.md`
+    - `jest-config.js`
+    - `tsconfig.json`
+- Add dev dependencies:
+    - `typescript: ^5.5.4`
+    - `eslint: ^8.57.0`
+    - `@eslint/js: ^9.7.0`
+    - `typescript-eslint: ^7.17.0`
+    - `jest: ^29.7.0`
+    - `ts-jest: ^29.2.3`
+    - `coverage: ^0.4.1`
+    - `globals: ^15.8.0`
