@@ -12,7 +12,7 @@
     "build-node": "tsc src/index.ts --outDir dist-node --lib es2015",
     "build": "npm run build-browser & npm run build-node"
   },
-  "author": "",
+  "author": "Pedro Yanez - Github: <wotanCode>",
   "license": "MIT",
   "description": "",
   "devDependencies": {
