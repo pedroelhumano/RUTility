@@ -1,5 +1,5 @@
 import { describe, test, expect } from '@jest/globals';
-import { calculateDv, isValidRut } from '../src/validations';
+import { calculateDv, isValidRut, isFormat } from '../src/validations';
 
 describe('calculateDv', () => {
   test('should calculate DV correctly for valid clean RUTs', () => {
@@ -106,5 +106,66 @@ describe('isValidRut function', () => {
 
   test('should throw error for empty string', () => {
     expect(() => isValidRut('')).toThrow("Invalid RUT format");
+  });
+
+  describe('isFormat', () => {
+    describe('isFormat.dot', () => {
+      test('should return true for valid RUT with dots', () => {
+        expect(isFormat.dot('12.345.678')).toBe(true);
+        expect(isFormat.dot('999.999.999')).toBe(true);
+        expect(isFormat.dot('5.678')).toBe(true);
+        expect(isFormat.dot('678')).toBe(true);
+        expect(isFormat.dot('1')).toBe(true);
+      });
+
+      test('should return false for invalid RUT with dots', () => {
+        expect(isFormat.dot('12345678-9')).toBe(false);
+        expect(isFormat.dot('12345678')).toBe(false);
+        expect(isFormat.dot('12.345.678-')).toBe(false);
+        expect(isFormat.dot('12.34.5678-9')).toBe(false);
+        expect(isFormat.dot('12.345.678-90')).toBe(false);
+      });
+    });
+
+    describe('isFormat.dash', () => {
+      test('should return true for valid RUT with dash', () => {
+        expect(isFormat.dash('12345678-9')).toBe(true);
+        expect(isFormat.dash('999999999-2')).toBe(true);
+        expect(isFormat.dash('1-K')).toBe(true);
+      });
+
+      test('should return false for invalid RUT with dash', () => {
+        expect(isFormat.dash('12345678')).toBe(false);
+        expect(isFormat.dash('12.345.678')).toBe(false);
+        expect(isFormat.dash('12.34.5678-9')).toBe(false);
+        expect(isFormat.dash('12.345.678-90')).toBe(false);
+        expect(isFormat.dash('0345678-9')).toBe(false);
+        expect(isFormat.dash('345678-92')).toBe(false);
+      });
+    });
+
+    describe('isFormat.dotDash', () => {
+      test('should return true for valid RUT with dots and dash', () => {
+        expect(isFormat.dotDash('12.345.678-9')).toBe(true);
+        expect(isFormat.dotDash('12.345.678-0')).toBe(true);
+        expect(isFormat.dotDash('12.345.678-K')).toBe(true);
+        expect(isFormat.dotDash('5.678-9')).toBe(true);
+        expect(isFormat.dotDash('678-0')).toBe(true);
+        expect(isFormat.dotDash('678-K')).toBe(true);
+
+      });
+
+      test('should return false for invalid RUT with dots and dash', () => {
+        expect(isFormat.dotDash('12.345.678-')).toBe(false);
+        expect(isFormat.dotDash('12.345.678')).toBe(false);
+        expect(isFormat.dotDash('12345678-')).toBe(false);
+        expect(isFormat.dotDash('12345678')).toBe(false);
+        expect(isFormat.dotDash('12.345.678-K1')).toBe(false);
+        expect(isFormat.dotDash('12345678-9')).toBe(false);
+        expect(isFormat.dotDash('12345678-0')).toBe(false);
+        expect(isFormat.dotDash('12345678-K')).toBe(false);
+        expect(isFormat.dotDash('5678-K')).toBe(false);
+      });
+    });
   });
 });
