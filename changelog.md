@@ -42,6 +42,7 @@
     - `changelog.md`
     - `jest-config.js`
     - `tsconfig.json`
+    - `tsconfig.browser`
     - `README.md`
 - Add npm scripts in `package.json`:
     - `test:unit`: Runs unit tests using Jest.
