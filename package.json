@@ -2,7 +2,7 @@
   "name": "rutility",
   "version": "0.0.1",
   "main": "dist-node/index.js",
-  "brower": "dist-browser/index.js",
+  "browser": "dist-browser/index.js",
   "scripts": {
     "test:unit": "jest",
     "test:coverage": "npx jest --coverage --collectCoverageFrom='src/**/*.ts'",
