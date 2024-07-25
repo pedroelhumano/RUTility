@@ -19,7 +19,7 @@ export const formatValidations = (rut: string): void => {
 
     const cleanRut = rut.replace(/[.-]/g, '');
     const rutRegex = /^\d{1,9}[0-9kK]?$/i;
-    
+
     if (!rutRegex.test(cleanRut)) {
         throw new Error('Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.');
     }
