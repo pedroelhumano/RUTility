@@ -1,3 +1,7 @@
+### 1.0.2 Add MIT licence"
+
+### 1.0.1 Update package.json for npm documentation"
+
 ### 1.0.0 Initial release
 
 - Add a new file `validations.ts` to contain functions for validating RUT (Rol Único Tributario):
