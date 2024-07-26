@@ -1,3 +1,5 @@
+### 1.0.5 delete types: lib in package.json
+
 ### 1.0.4 Fix build for browser
 - Fix build for browser.
 - Add `package.json` to `.npmignore`.
@@ -9,7 +11,6 @@
 ### 1.0.1 Update package.json for npm documentation"
 
 ### 1.0.0 Initial release
-
 - Add a new file `validations.ts` to contain functions for validating RUT (Rol Único Tributario):
     - `calculateDv`: Calculates the verification digit of a Chilean RUT (Rol Único Tributario).
     - `isValidRut`: Validates if a Chilean RUT (Rol Único Tributario) is valid.
