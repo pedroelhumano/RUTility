@@ -12,6 +12,13 @@ npm install rutility
 ```
 
 ## Usage
+
+### Import in a Node.js Project
+```javascript
+const { format, calculateDv, isValidRut, isFormat } = require('rutility');
+```
+
+### Import in an ES6 Module
 ```sh
 import { format, calculateDv, isValidRut, isFormat } from 'rutility';
 ```
@@ -33,7 +40,6 @@ console.log(format.dash('123456780')); // '12345678-0'
 console.log(format.dash('12.345.6780')); // '12.345.678-0'
 console.log(format.dash('12')); // '1-2'
 ```
-
 
 `format.dotDash(rut: string): string`
 Formats a RUT by adding dots and a dash.
