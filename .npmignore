@@ -3,6 +3,7 @@ node_modules
 coverage
 dist
 test
+.github
 
 # Files
 .gitignore
