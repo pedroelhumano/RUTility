@@ -1,0 +1,16 @@
+# Folders
+node_modules
+coverage
+dist
+test
+
+# Files
+.gitignore
+*.log
+changelog.md
+jest.config
+eslint.config.mjs
+
+# Include
+!dist-node
+!dist-browser

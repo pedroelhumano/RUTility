@@ -1,4 +1,6 @@
-### 1.0.2 Add MIT licence"
+### 1.0.3 Add .npmignore
+
+### 1.0.2 Add MIT licence
 
 ### 1.0.1 Update package.json for npm documentation"
 
