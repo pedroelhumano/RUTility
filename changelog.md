@@ -1,3 +1,7 @@
+### 1.0.4 Fix build for browser
+- Fix build for browser.
+- Add `package.json` to `.npmignore`.
+
 ### 1.0.3 Add .npmignore
 
 ### 1.0.2 Add MIT licence
