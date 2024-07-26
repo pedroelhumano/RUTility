@@ -11,7 +11,6 @@ You can install the library using npm:
 npm install rutility
 ```
 
-
 ## Usage
 ```sh
 import { format, calculateDv, isValidRut, isFormat } from 'rutility';
