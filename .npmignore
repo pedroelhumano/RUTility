@@ -12,6 +12,7 @@ changelog.md
 jest.config
 eslint.config.mjs
 package.json
+.prettierrc
 
 # Include
 !dist-node

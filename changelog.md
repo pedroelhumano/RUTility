@@ -1,3 +1,5 @@
+### 1.0.7 Add prettier support
+
 ### 1.0.6 Update tsconfig fixing d.types
 - Update `tsconfig.browser.json`.
 - Change name `tsconfig.json` to `tsconfig.node.json` and update it.

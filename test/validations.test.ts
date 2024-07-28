@@ -48,11 +48,21 @@ describe('calculateDv', () => {
   });
 
   test('should throw error for invalid RUT formats', () => {
-    expect(() => calculateDv('')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
-    expect(() => calculateDv('1234a678')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
-    expect(() => calculateDv('9999999999')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
-    expect(() => calculateDv(9999999999)).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
-    expect(() => calculateDv('9.999.999.999')).toThrow("Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'.");
+    expect(() => calculateDv('')).toThrow(
+      "Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'."
+    );
+    expect(() => calculateDv('1234a678')).toThrow(
+      "Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'."
+    );
+    expect(() => calculateDv('9999999999')).toThrow(
+      "Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'."
+    );
+    expect(() => calculateDv(9999999999)).toThrow(
+      "Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'."
+    );
+    expect(() => calculateDv('9.999.999.999')).toThrow(
+      "Invalid RUT format. Acceptable formats are '12.345.678' or '12345678'."
+    );
   });
 });
 
@@ -73,8 +83,12 @@ describe('isValidRut function', () => {
   });
 
   test('should throw error for invalid RUT formats', () => {
-    expect(() => isValidRut('1234a678-5')).toThrow("Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.");
-    expect(() => isValidRut('12.34a.678-5')).toThrow("Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.");
+    expect(() => isValidRut('1234a678-5')).toThrow(
+      'Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.'
+    );
+    expect(() => isValidRut('12.34a.678-5')).toThrow(
+      'Invalid RUT format. RUT must be numeric and have between 1 and 10 digits.'
+    );
   });
 
   test('should return false for RUTs with incorrect verification digits', () => {
@@ -95,17 +109,17 @@ describe('isValidRut function', () => {
   });
 
   test('should throw error for RUTs with more than 10 digits', () => {
-    expect(() => isValidRut('12345678901-5')).toThrow("Invalid RUT format");
-    expect(() => isValidRut('1.234.567.890-5')).toThrow("Invalid RUT format");
+    expect(() => isValidRut('12345678901-5')).toThrow('Invalid RUT format');
+    expect(() => isValidRut('1.234.567.890-5')).toThrow('Invalid RUT format');
   });
 
   test('should throw error for RUTs starting with zero', () => {
-    expect(() => isValidRut('012345678-5')).toThrow("Invalid RUT format");
-    expect(() => isValidRut('0.123.456.789-5')).toThrow("Invalid RUT format");
+    expect(() => isValidRut('012345678-5')).toThrow('Invalid RUT format');
+    expect(() => isValidRut('0.123.456.789-5')).toThrow('Invalid RUT format');
   });
 
   test('should throw error for empty string', () => {
-    expect(() => isValidRut('')).toThrow("Invalid RUT format");
+    expect(() => isValidRut('')).toThrow('Invalid RUT format');
   });
 
   describe('isFormat', () => {
@@ -152,7 +166,6 @@ describe('isValidRut function', () => {
         expect(isFormat.dotDash('5.678-9')).toBe(true);
         expect(isFormat.dotDash('678-0')).toBe(true);
         expect(isFormat.dotDash('678-K')).toBe(true);
-
       });
 
       test('should return false for invalid RUT with dots and dash', () => {

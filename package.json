@@ -4,10 +4,11 @@
   "main": "dist-node/index.js",
   "browser": "dist-browser/index.js",
   "scripts": {
+    "prettier-format": "prettier --config .prettierrc \"{src,test}/**/*.ts\" --write",
     "test:unit": "jest",
     "test:coverage": "npx jest --coverage --collectCoverageFrom='src/**/*.ts'",
     "test:lint": "eslint --fix",
-    "test": "npm run test:unit & npm run test:coverage & npm run test:lint",
+    "test": "npm run test:unit & npm run test:coverage & npm run test:lint & npm run prettier-format",
     "build-browser": "tsc --project tsconfig.browser.json",
     "build-node": "tsc --project tsconfig.node.json",
     "build": "npm run build-browser & npm run build-node"
@@ -47,6 +48,7 @@
     "eslint": "^8.57.0",
     "globals": "^15.8.0",
     "jest": "^29.7.0",
+    "prettier": "^2.4.1",
     "ts-jest": "^29.2.3",
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.17.0",
