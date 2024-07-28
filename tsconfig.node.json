@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "./dist-browser",
-    "module": "es6",
-    "target": "es5",
-    "lib": ["dom", "es2015"],
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
+    "outDir": "./dist-node",
+    "lib": ["es2015", "dom"],
+    "module": "commonjs",
+    "target": "es6",
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true

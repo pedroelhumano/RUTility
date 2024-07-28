@@ -1,3 +1,8 @@
+### 1.0.6 Update tsconfig fixing d.types
+- Update `tsconfig.browser.json`.
+- Change name `tsconfig.json` to `tsconfig.node.json` and update it.
+- Add Keywords in `package.json`
+
 ### 1.0.5 delete types: lib in package.json
 
 ### 1.0.4 Fix build for browser

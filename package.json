@@ -9,13 +9,16 @@
     "test:lint": "eslint --fix",
     "test": "npm run test:unit & npm run test:coverage & npm run test:lint",
     "build-browser": "tsc --project tsconfig.browser.json",
-    "build-node": "tsc src/index.ts --outDir dist-node --lib es2015",
+    "build-node": "tsc --project tsconfig.node.json",
     "build": "npm run build-browser & npm run build-node"
   },
   "files": [
     "dist-node",
-    "dist-browser"
+    "dist-browser",
+    "dist-node/*.d.ts",
+    "dist-browser/*.d.ts"
   ],
+  "types": "dist-node/index.d.ts",
   "author": "Pedro Yanez <wotanCode> (https://github.com/wotanCode)",
   "license": "MIT",
   "description": "A JavaScript library for validating and formatting Chilean RUTs (Rol Único Tributario). It provides functions to add/remove dots and dashes, validate formats, and calculate check digits",
@@ -24,7 +27,18 @@
     "url": "https://github.com/wotanCode/RUTility"
   },
   "homepage": "https://github.com/wotanCode/RUTility#README.md",
-  "keywords": ["rutility", "rut", "chilean dni", "chilean rut", "rut utils"],
+  "keywords": [
+    "rutility",
+    "rut",
+    "chilean dni",
+    "chilean rut",
+    "rut utils",
+    "validar",
+    "rut",
+    "identificación",
+    "chile",
+    "node"
+  ],
   "devDependencies": {
     "@babel/parser": "^7.24.8",
     "@babel/types": "^7.24.9",
