@@ -1,4 +1,6 @@
 ### 1.0.7 Add prettier support
+- Adding prettier
+- Update devDependencies
 
 ### 1.0.6 Update tsconfig fixing d.types
 - Update `tsconfig.browser.json`.
