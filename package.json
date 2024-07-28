@@ -43,7 +43,7 @@
   "devDependencies": {
     "@babel/parser": "^7.25.0",
     "@babel/types": "^7.25.0",
-    "@eslint/js": "^9.8.0",
+    "@eslint/js": "^8.57.0",
     "coverage": "^0.4.1",
     "eslint": "^9.8.0",
     "globals": "^15.8.0",
