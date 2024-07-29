@@ -5,7 +5,7 @@
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
-    "lib": ["dom", "es2015"],
+    "lib": ["dom", "es5"],
     "module": "es6",
     "moduleResolution": "node",
     "outDir": "./dist-browser",

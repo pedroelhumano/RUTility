@@ -17,3 +17,4 @@ package.json
 # Include
 !dist-node
 !dist-browser
+!dist-types
