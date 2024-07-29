@@ -11,7 +11,7 @@ test
 changelog.md
 jest.config
 eslint.config.mjs
-package.json
+package-lock.json
 .prettierrc
 
 # Include
