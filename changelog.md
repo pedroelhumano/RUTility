@@ -1,3 +1,5 @@
+### 1.0.8 Fix imports builds
+
 ### 1.0.7 Add prettier support
 - Adding prettier
 - Update devDependencies

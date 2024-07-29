@@ -1,16 +1,21 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
-    "outDir": "./dist-node",
-    "lib": ["es2015", "dom"],
+    "esModuleInterop": true,
+    "lib": ["es2015"],
     "module": "commonjs",
-    "target": "es6",
+    "moduleResolution": "node",
+    "outDir": "./dist-node",
+    "resolveJsonModule": true,
     "rootDir": "./src",
+    "sourceMap": true,
+    "skipLibCheck": true,
     "strict": true,
-    "esModuleInterop": true
+    "target": "es6"
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist", "test"]
+  "exclude": ["node_modules", "dist", "test"],
+  "include": ["src/**/*.ts"]
 }
