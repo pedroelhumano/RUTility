@@ -1,6 +1,6 @@
 {
   "name": "rutility",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "dist-node/index.js",
   "browser": "dist-browser/index.js",
   "scripts": {
@@ -15,16 +15,15 @@
   },
   "files": [
     "dist-node",
-    "dist-browser",
-    "dist-types"
+    "dist-browser"
   ],
-  "types": "dist-types/index.d.ts",
   "exports": {
     ".": {
       "node": "./dist-node/index.js",
       "browser": "./dist-browser/index.js"
     }
   },
+  "types": "dist-node/index.d.ts",
   "author": "Pedro Yanez <wotanCode> (https://github.com/wotanCode)",
   "license": "MIT",
   "description": "A JavaScript library for validating and formatting Chilean RUTs (Rol Único Tributario). It provides functions to add/remove dots and dashes, validate formats, and calculate check digits",
