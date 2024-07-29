@@ -1,6 +1,6 @@
 {
   "name": "rutility",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "dist-node/index.js",
   "browser": "dist-browser/index.js",
   "scripts": {

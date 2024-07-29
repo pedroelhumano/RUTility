@@ -1,3 +1,5 @@
+### 1.0.11 Add package-lock.json to .npmignore
+
 ### 1.0.10 Fix build for .js files
 
 ### 1.0.9 Updating types builds
