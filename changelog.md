@@ -1,3 +1,9 @@
+### 1.0.14 Fix
+
+### 1.0.13 Fix Error in .npmignore
+
+### 1.0.12 Update build for global compilation
+
 ### 1.0.11 Add package-lock.json to .npmignore
 
 ### 1.0.10 Fix build for .js files

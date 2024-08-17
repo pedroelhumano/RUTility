@@ -1,7 +1,6 @@
 # Folders
 node_modules
 coverage
-dist
 test
 .github
 
@@ -15,5 +14,4 @@ package-lock.json
 .prettierrc
 
 # Include
-!dist-node
-!dist-browser
+!dist

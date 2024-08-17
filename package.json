@@ -1,29 +1,26 @@
 {
   "name": "rutility",
-  "version": "1.0.11",
-  "main": "dist-node/index.js",
-  "browser": "dist-browser/index.js",
+  "version": "1.0.14",
+  "main": "dist/index.js",
+  "browser": "dist/index.js",
+  "module": "dist/index.js",
   "scripts": {
     "prettier-format": "prettier --config .prettierrc \"{src,test}/**/*.ts\" --write",
     "test:unit": "jest",
     "test:coverage": "npx jest --coverage --collectCoverageFrom='src/**/*.ts'",
     "test:lint": "eslint --fix",
     "test": "npm run test:unit & npm run test:coverage & npm run test:lint & npm run prettier-format",
-    "build-browser": "tsc --project tsconfig.browser.json",
-    "build-node": "tsc --project tsconfig.node.json",
-    "build": "npm run build-browser & npm run build-node"
+    "build": "tsc --project tsconfig.json"
   },
-  "files": [
-    "dist-node",
-    "dist-browser"
-  ],
+  "files": ["dist"],
   "exports": {
     ".": {
-      "node": "./dist-node/index.js",
-      "browser": "./dist-browser/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
-  "types": "dist-node/index.d.ts",
+  "types": "dist/index.d.ts",
   "author": "Pedro Yanez <wotanCode> (https://github.com/wotanCode)",
   "license": "MIT",
   "description": "A JavaScript library for validating and formatting Chilean RUTs (Rol Único Tributario). It provides functions to add/remove dots and dashes, validate formats, and calculate check digits",
