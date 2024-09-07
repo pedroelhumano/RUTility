@@ -21,14 +21,14 @@
     }
   },
   "types": "dist/index.d.ts",
-  "author": "Pedro Yanez <wotanCode> (https://github.com/wotanCode)",
+  "author": "Pedro Yanez <pedroelhumano> (https://github.com/pedroelhumano)",
   "license": "MIT",
   "description": "A JavaScript library for validating and formatting Chilean RUTs (Rol Único Tributario). It provides functions to add/remove dots and dashes, validate formats, and calculate check digits",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wotanCode/RUTility"
+    "url": "https://github.com/pedroelhumano/RUTility"
   },
-  "homepage": "https://github.com/wotanCode/RUTility#README.md",
+  "homepage": "https://github.com/pedroelhumano/RUTility#README.md",
   "keywords": [
     "rutility",
     "rut",
