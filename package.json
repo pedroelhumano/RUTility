@@ -26,7 +26,7 @@
   "description": "A JavaScript library for validating and formatting Chilean RUTs (Rol Único Tributario). It provides functions to add/remove dots and dashes, validate formats, and calculate check digits",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pedroelhumano/RUTility"
+    "url": "git+https://github.com/pedroelhumano/RUTility.git"
   },
   "homepage": "https://github.com/pedroelhumano/RUTility#README.md",
   "keywords": [
